@@ -49,13 +49,7 @@ var searchMatrix = function(matrix, target) {
     }
   }
 
-  if (matrix[left] && !matrix[right]) {
-    rowTracker = left;
-  } else if (target >= matrix[left][0] && target < matrix[right][0]) {
-    rowTracker = left;
-  } else {
-    rowTracker = right;
-  }
+  rowTracker = left;
 
   left = 0;
   right = matrix[0].length;
