@@ -40,4 +40,27 @@ var minDistance = function(str1, str2) {
   }
 
   return dp[str1.length][str2.length];
+
+  //O(m) space solution using let dp instead of const dp
+
+  for (let i = 0; i <= str1.length; i++) {
+    dp.push(i);
+  }
+
+  for (let i = 1; i <= str2.length; i++) {
+    const inner = [];
+    for (let j = 0; j <= str1.length; j++) {
+      if (!j) {
+        inner.push(j + i);
+      } else if (str2[i - 1] === str1[j - 1]) {
+        inner[j] = dp[j - 1];
+      } else {
+        inner[j] = 1 + Math.min(inner[j - 1], dp[j]);
+      }
+    }
+
+    dp = inner;
+  }
+
+  return dp[str1.length];
 };
